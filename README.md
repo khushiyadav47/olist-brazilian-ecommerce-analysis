@@ -48,13 +48,13 @@ The cleaned tables were loaded into PostgreSQL and all analysis was done in SQL.
 
 ## Key Findings
 
-### 1. Repurchase is very low
-- **2,801 of 93,358** customers with a delivered order bought more than once, a repurchase rate of **3.0%**.
+### 1. Repeat purchase is very low
+- Only **2,801 of 93,358** customers (**3.0%**) with a delivered order bought more than once.
 - 97% of customers buy only once, so customer retention is weak.
 
 ### 2. Delivery performance
-- Of 96,470 delivered orders with a delivery date, **4,664** were late.
-- **SP** has a large number of late orders (1,128) but a low late rate of **2.79%**, because it has the most orders.
+- **4,664** of 96,470 delivered orders arrived late.
+- Late counts alone are misleading. **SP** has 1,128 late orders, but its late rate is just **2.79%** because it handles the most orders.
 - Among states with 1,000+ orders, the highest late rates are:
 
 | State | Orders | Late orders | Late % |
@@ -65,26 +65,34 @@ The cleaned tables were loaded into PostgreSQL and all analysis was done in SQL.
 | ES | 1,995 | 158 | 7.92 |
 | PE | 1,593 | 124 | 7.78 |
 
-- Counting late orders alone is misleading. The late **percentage** shows the real picture.
-- RJ has the biggest impact because it combines a high late rate with a high order volume.
+- **RJ** has the biggest impact, combining a high late rate with high order volume.
+- Late deliveries are concentrated in the **north-east** states of Brazil.
 
 ### 3. Review scores
-- Average review score is **4.09 / 5**.
-- 57.8% of reviews are 5 star, and about **14.7%** are 1 or 2 star.
-- Average review score by state (states with 1,000+ reviews) ranges only from **3.86 to 4.18**.
+- Average review score is **4.09 / 5**. 57.8% of reviews are 5-star and about **14.7%** are 1 or 2 star.
+- State-wise average scores (states with 1,000+ reviews) stay in a narrow range of **3.86 to 4.18**.
 
 ### 4. Late delivery vs review score
-> TODO: add results of the delivery_status vs average review score query here.
+Review scores drop sharply as delivery gets later:
+
+| Delivery status | Avg review score |
+|---|---|
+| Early | 4.29 |
+| On-time | 4.03 |
+| Slightly late | 3.29 |
+| Late | 1.85 |
+
+Late delivery is the biggest driver of bad reviews: late orders score less than half of early ones.
 
 ---
 
 ## Recommendations
 
-- Focus delivery improvement on **CE and RJ** first (high late rate, and RJ has high volume).
-- Treat states with few orders, such as AL (17.38% late on about 400 orders), carefully, since small volumes make percentages unstable.
+- Prioritise **RJ** (most late orders) and **CE** (highest late rate among high-volume states).
+- Improve logistics partners and routes in the north-east states (AL, SE, MA, CE, BA).
+- Treat low-volume states like AL (17.38% late on about 400 orders) with care, since small volumes make percentages unstable.
+- Use the delivery practices of **SP, MG and PR** (late rate under 3%) as a model for other states.
 - Work on repeat purchase (offers, follow-ups after delivery), since only 3% of customers return.
-
----
 
 ## Repository Structure
 
