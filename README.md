@@ -165,7 +165,10 @@ Late delivery clearly hurts reviews (Part 1), but it explains only a small part 
 ```
 olist-brazilian-ecommerce-analysis/
 ├── README.md
+├── olist_analysis_dashboard.pbix
 ├── Reports/                      # Written reports with questions, SQL queries, outputs and charts
+│   ├── olist_analysis_report01
+│   └── olist_analysis_report02
 ├── python-notebooks/
 │   ├── 01_orders_customers_cleaning.ipynb
 │   ├── 02_reviews_cleaning.ipynb
